@@ -7,12 +7,14 @@ package com.gmail.kamil.jarmusik.charstream.charstream.stream;
 
 import com.gmail.kamil.jarmusik.charstream.charstream.util.OptionalChar;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.OptionalInt;
 import java.util.Spliterator;
 import java.util.function.IntConsumer;
 import java.util.function.IntFunction;
 import java.util.function.IntPredicate;
 import java.util.function.IntUnaryOperator;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -170,8 +172,37 @@ class CharStreamImpl implements CharStream {
 
     @Override
     public char[] toArray() {
-        StringBuilder result = boxed().map(a -> new StringBuilder().append(a)).reduce(new StringBuilder(), (a,b) -> a.append(b));
-        return result.toString().toCharArray();
+        /*StringBuilder result = boxed().map(a -> new StringBuilder().append(a)).reduce(new StringBuilder(), (a,b) -> a.append(b));
+        return result.toString().toCharArray();*/
+        String result = boxed().map(Object::toString).collect(Collectors.joining());
+        return result.toCharArray();
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.intStream);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CharStreamImpl other = (CharStreamImpl) obj;
+        if (!Objects.equals(this.intStream, other.intStream)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }

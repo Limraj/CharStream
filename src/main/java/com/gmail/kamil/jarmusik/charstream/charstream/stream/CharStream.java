@@ -34,9 +34,9 @@ public interface CharStream extends BaseStream<Character, CharStream> {
     boolean noneMatch(IntPredicate predicate);
     boolean allMatch(IntPredicate predicate);
     boolean anyMatch(IntPredicate predicate);
-    void forEach(IntConsumer action);
-    void forEachOrdered(IntConsumer action);
     char[] toArray();
+    void forEachOrdered(IntConsumer action);
+    void forEach(IntConsumer action);
     long count();
     <U> Stream<U> mapToObj(IntFunction<? extends U> mapper);
     CharStream filter(IntPredicate predicate);
