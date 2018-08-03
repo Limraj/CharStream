@@ -61,7 +61,7 @@ public class OptionalChar {
 
     @Override
     public boolean equals(Object obj) {
-        return optionalInt.equals(obj);
+        return optionalInt.equals(((OptionalChar)obj).optionalInt);
     }
 
     @Override

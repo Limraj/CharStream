@@ -172,8 +172,6 @@ class CharStreamImpl implements CharStream {
 
     @Override
     public char[] toArray() {
-        /*StringBuilder result = boxed().map(a -> new StringBuilder().append(a)).reduce(new StringBuilder(), (a,b) -> a.append(b));
-        return result.toString().toCharArray();*/
         String result = boxed().map(Object::toString).collect(Collectors.joining());
         return result.toCharArray();
     }

@@ -30,7 +30,7 @@ public interface CharStream extends BaseStream<Character, CharStream> {
     static CharStream of(char value) {
        return new CharStreamImpl(IntStream.of((int)value));
     }
-
+    
     boolean noneMatch(IntPredicate predicate);
     boolean allMatch(IntPredicate predicate);
     boolean anyMatch(IntPredicate predicate);
